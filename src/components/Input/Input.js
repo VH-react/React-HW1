@@ -10,7 +10,7 @@ const Input = props => {
     return (
         <div className={isInvalid(props) ? `${props.cssClass} invalid` : `${props.cssClass}` }>
             <label>{props.label}</label>
-            <input type={inputType} id={htmlFor} value={props.value} onChange={props.onChange}/>
+            <input type={inputType} id={htmlFor} value={props.value} onChange={props.onChange} className={isInvalid(props) ? "invalid-input" : null}/>
             {
                 isInvalid(props) ? <span>{props.errorMessage || "Введите верное значение"}</span> : null
             }

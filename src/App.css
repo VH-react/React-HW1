@@ -22,6 +22,7 @@ body {
 
 
 .controls {
+  margin-bottom: 10px;
   padding: 0 50px;
   box-sizing: border-box;
 }
@@ -58,10 +59,15 @@ body {
   color: #f01f30;
 }
 
+.invalid-input {
+  border: 1px solid red !important
+}
+
 .edit-input input {
   width: 100%;
   box-sizing: border-box;
   max-width: 110px;
+  outline: none;
 }
 
 .table-container {

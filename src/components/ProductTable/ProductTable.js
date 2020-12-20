@@ -26,7 +26,6 @@ class ProductTable extends Component {
                                             product={product}
                                             onRemoveProduct={this.props.removeProduct}
                                             onUpdateHandler={this.props.updateProduct}
-                                            changeHandler={event => this.props.onChangeProduct(event, productName)}
                                         />
                                     )
                                 })

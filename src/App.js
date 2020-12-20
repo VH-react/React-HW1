@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import ProductForm from './components/ProductForm/ProductForm'
 import ProductTable from './components/ProductTable/ProductTable'
+
+function validateCategory(category) {
+  const re = /^[а-яa-z]+$/i;
+  return re.test(String(category).toLowerCase());
+}
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -12,7 +18,7 @@ class App extends Component {
           value: '',
           type: 'text',
           label: 'Название',
-          errorMessage: 'Введите корректное значение',
+          errorMessage: 'Введите корректное название',
           valid: false,
           touched: false,
           validation: {
@@ -23,18 +29,19 @@ class App extends Component {
           value: '',
           type: 'text',
           label: 'Категория',
-          errorMessage: 'Введите корректное значение',
+          errorMessage: 'Введите категорию (без цифр)',
           valid: false,
           touched: false,
           validation: {
-              required: true,
+            category: true,
+            required: true
           }
         },
         price: {
           value: '',
           type: 'number',
           label: 'Цена',
-          errorMessage: 'Введите корректное значение',
+          errorMessage: 'Введите корректную цену',
           valid: false,
           touched: false,
           validation: {
@@ -45,7 +52,7 @@ class App extends Component {
           value: '',
           type: 'number',
           label: 'Остаток на складе',
-          errorMessage: 'Введите корректное значение',
+          errorMessage: 'Введите корректное количество',
           valid: false,
           touched: false,
           validation: {
@@ -105,6 +112,9 @@ class App extends Component {
     if(validation.required) {
         isValid = value.trim() !== '' && isValid
     }
+    if(validation.category) {
+      isValid = validateCategory(value) && isValid
+    }
     return isValid
   }
 
@@ -135,7 +145,7 @@ class App extends Component {
       <div className="main">
         <div className="container">
             <ProductForm formControls={this.state.formControls} isFormValid={this.state.isFormValid} onSumbitProduct={this.addProduct} onChangeHandler={this.onChangeHandler}/>
-            <ProductTable products={this.state.productRows} updateProduct={this.updateProduct} removeProduct={this.removeProduct} onChangeMini={this.onChangeMini} />
+            <ProductTable products={this.state.productRows} updateProduct={this.updateProduct} removeProduct={this.removeProduct}/>
         </div>
       </div>
     );
