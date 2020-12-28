@@ -26,18 +26,6 @@ class PostItem extends Component {
     })
   }
 
-  onClickOutside = () => {
-    this.setState({isClicked: false})
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.onClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.onClickOutside);
-  }
-
   onClickHandler = e => {
     this.setState({
       isClicked: !this.state.isClicked
