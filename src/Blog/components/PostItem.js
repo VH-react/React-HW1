@@ -23,16 +23,19 @@ class PostItem extends Component {
       this.setState({
         comments: []
       });
-      // alert(e.message)
     })
   }
 
+  onClickOutside = () => {
+    this.setState({isClicked: false})
+  }
+
   componentDidMount() {
-    document.addEventListener('mousedown', () => {this.setState({isClicked: false})});
+    document.addEventListener('mousedown', this.onClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', () => {this.setState({isClicked: false})});
+    document.removeEventListener('mousedown', this.onClickOutside);
   }
 
   onClickHandler = e => {
