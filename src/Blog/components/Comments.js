@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Comment, Header, Dimmer, Loader, Segment } from "semantic-ui-react";
-import PostComment from "./PostComment"
+import CommentItem from "./CommentItem"
 
 class Comments extends Component {
     state = {
@@ -40,7 +40,7 @@ class Comments extends Component {
               <Dimmer active={loading} inverted>
                 <Loader inverted>Loading</Loader>
               </Dimmer>
-              { comments.map(comment => <PostComment comment={comment} key={comment.id} id={comment.id} /> )}
+              { comments.map(comment => <CommentItem comment={comment} key={comment.id} id={comment.id} /> )}
             </Segment>
           </Comment.Group>
         );

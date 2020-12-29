@@ -1,7 +1,7 @@
 import React from 'react';
 import { Comment } from 'semantic-ui-react'
 
-const PostComment = props => {
+const CommentItem = props => {
   const { comment } = props;
   return (
     <React.Fragment>
@@ -16,4 +16,4 @@ const PostComment = props => {
   );
 }
 
-export default PostComment;
+export default CommentItem;
