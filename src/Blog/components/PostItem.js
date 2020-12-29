@@ -35,7 +35,7 @@ class PostItem extends Component {
           </Feed.Event>
         </Feed>
         {
-          areCommentsDisplayed ? <Comments postId={post.id} /> : null
+          areCommentsDisplayed && <Comments postId={post.id} />
         }
       </React.Fragment>
     );
