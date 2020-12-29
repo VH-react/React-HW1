@@ -17,12 +17,15 @@ class AuthorInfo extends Component {
     const { authorId } = this.props;
     if (authorId) {
       this.fetchAuthor(authorId)
+      this.fetchAlbums(authorId)
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.authorId !== this.props.authorId && this.props.authorId) {
-      this.fetchAuthor(this.props.authorId)
+    const { authorId } = this.props;
+    if (prevProps.authorId !== authorId && authorId) {
+      this.fetchAuthor(authorId)
+      this.fetchAlbums(authorId)
     }
   }
 
@@ -32,10 +35,13 @@ class AuthorInfo extends Component {
       .then(response => response.json())
       .then(data => this.setState({ author: data, loading: false }))
       .catch(e => this.setState({ error: e.message, loading: false, author: null }))
+  }
+
+  fetchAlbums(authorId) {
     fetch(`https://jsonplaceholder.typicode.com/users/${authorId}/albums`)
-      .then(response => response.json())
-      .then(albums => this.setState({ loading: false, numberofAlbums: albums.length }))
-      .catch(e => this.setState({ error: e.message, loading: false, numberofAlbums: null }))
+    .then(response => response.json())
+    .then(albums => this.setState({ loading: false, numberofAlbums: albums.length }))
+    .catch(e => this.setState({ error: e.message, loading: false, numberofAlbums: null }))
   }
 
   render() {

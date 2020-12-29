@@ -8,8 +8,7 @@ class PostList extends Component {
     super(props);
     this.state = {
       loading: false,
-      posts: [],
-      comments: [],
+      posts: []
     };
   }
 

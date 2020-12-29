@@ -1,42 +1,22 @@
 import React, { Component } from 'react';
-import { Feed, Comment, Header, Dimmer, Loader, Segment } from "semantic-ui-react";
-import PostComment from "./PostComment"
+import { Feed } from "semantic-ui-react";
+import Comments from "./Comments"
 
 class PostItem extends Component {
   state = {
-    loading: false,
-    comments: [],
-    isClicked: false
-  }
-
-  uploadComments() {
-    this.setState({ loading: true });
-    fetch(`https://jsonplaceholder.typicode.com/posts/${this.props.id}/comments`)
-    .then(response => response.json())
-    .then(comments => {
-      this.setState({
-        loading: false,
-        comments
-      })
-    })
-    .catch(e => {
-      this.setState({
-        comments: []
-      });
-    })
+    areCommentsDisplayed: false
   }
 
   onClickHandler = e => {
     this.setState({
-      isClicked: !this.state.isClicked
+      areCommentsDisplayed: !this.state.areCommentsDisplayed
     })
-    this.uploadComments()
     this.props.onClick(e)
   }
 
   render() {
     const { post } = this.props;
-    const { comments, loading } = this.state;
+    const { areCommentsDisplayed } = this.state;
     return (
       <React.Fragment>
         <Feed>
@@ -55,18 +35,7 @@ class PostItem extends Component {
           </Feed.Event>
         </Feed>
         {
-          this.state.isClicked ?
-            <Comment.Group>
-              <Header as='h3' dividing>
-                Comments
-              </Header>
-              <Segment>
-                <Dimmer active={loading} inverted>
-                  <Loader inverted>Loading</Loader>
-                </Dimmer>
-                { comments.map(comment => <PostComment comment={comment} key={comment.id} id={comment.id} /> )}
-              </Segment>
-            </Comment.Group> : null
+          areCommentsDisplayed ? <Comments postId={post.id} /> : null
         }
       </React.Fragment>
     );
