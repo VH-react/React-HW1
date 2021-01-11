@@ -1,16 +1,14 @@
-import React from 'react';
-import './App.css';
-import 'semantic-ui-css/semantic.min.css'
-import Blog from "./Blog/Blog";
+import React, { Component } from 'react'
+import './App.css'
+import HomeWork from './components/HomeWork'
 
-
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-      <div className='app'>
-        <Blog />
+      <div>
+        <HomeWork />
       </div>
-    )
+    );
   }
 }
 
