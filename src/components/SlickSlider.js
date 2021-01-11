@@ -20,7 +20,8 @@ class SlickSlider extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.children !== this.props.children) {
-          this.$el.trigger("slick:updated");
+            this.$el.slick('unslick');
+            this.$el.slick(this.props.options);
         }
     }
 
