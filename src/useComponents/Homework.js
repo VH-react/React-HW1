@@ -4,6 +4,9 @@ import useIsOnline from './useIsOnline'
 import useLocalStorage from './useLocalStorage'
 
 const Homework = () => {
+    const style = {
+        textAlign: 'center'
+    }
     const [titleName, setTitleName] = useState('')
     useDocumentTitle(titleName)
 
@@ -15,18 +18,23 @@ const Homework = () => {
         <div>
             <div>
                 <h1>Change Document Title</h1>
-                <input placeholder='Fill title' type="text" value={titleName} onChange={e => setTitleName(e.target.value)}/>
-                Name: {titleName}
+                <div style={style}>
+                    <input placeholder='Fill title' type="text" value={titleName} onChange={e => setTitleName(e.target.value)}/>
+                    <br/>
+                    Name: {titleName}
+                </div>
             </div>
             <br/>
             <div>
                 <h1>Online Status</h1>
-                <span>{`You are ${isOnline ? 'online' : 'offline'}`}</span>
+                <div style={style}>
+                    <span>{`You are ${isOnline ? 'online' : 'offline'}`}</span>
+                </div>
             </div>
             <br/>
             <div>
                 <h1>Local Storage</h1>
-                <div>
+                <div style={style}>
                     <input
                         type="text"
                         placeholder="Enter your name"
