@@ -23,7 +23,7 @@ function PostDetails() {
                         {post.body}
                     </Item.Description>
                     <Item.Extra>
-                        {user && <Link to={`/users/${post.userId}`}>Go to {user ? user.name : 'Author'}</Link> }
+                        <Link to={`/users/${post.userId}`}>Go to Author's Page</Link>
                     </Item.Extra>
                     <Item.Extra>
                         Comments
