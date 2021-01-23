@@ -6,7 +6,7 @@ import Users from "../containers/Users";
 import About from "../containers/About";
 import UserDetails from "../containers/UserDetails";
 import Posts from "../containers/Posts"
-import PostDetails from "./PostDetails"
+import PostDetails from "../containers/PostDetails"
 import NotFound from "../containers/NotFound";
 
 

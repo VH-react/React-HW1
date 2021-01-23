@@ -7,11 +7,10 @@ import Glide from "../components/Glide";
 
 function Album() {
   const { userId, albumId } = useParams();
-  const [album, , error] = useData(`/albums/${albumId}`, {});
+  const [album, , error] = useData(`/albums/${albumId}`, [], {});
   const [photos, isFetching] = useData(`/albums/${albumId}/photos`, []);
 
   if (error && error.status === 404) {
-    console.log(error);
     return <Redirect to={`/users/${userId}`}/>
   }
 

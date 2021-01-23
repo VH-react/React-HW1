@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Route, Switch, useParams, useRouteMatch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { Card, Container, Grid, Header, Icon, Image, List } from "semantic-ui-react";
 import useData from "../hooks/useData";
 import LoadingOverlay from "../components/LoadingOverlay";
@@ -12,12 +12,11 @@ function UserDetails() {
   const { userId } = useParams();
   const { path, url } = useRouteMatch();  // /users/:userId, /users/1
 
-  const [user, isLoading] = useData(`/users/${userId}`, null);
-  const [albums, , err] = useData(`/users/${userId}/albums`, [], {});
+  const [user, isLoading, err] = useData(`/users/${userId}`, null, {});
+  const [albums] = useData(`/users/${userId}/albums`, []);
 
   if (err && err.status === 404) {
-    console.log(err);
-    return <Redirect to={`/users/${userId}`} />
+    window.history.back()
   }
 
   return (
