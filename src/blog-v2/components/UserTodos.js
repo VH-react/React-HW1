@@ -1,12 +1,12 @@
 import React from 'react'
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container, Item } from 'semantic-ui-react';
 import useData from '../hooks/useData';
 import LoadingOverlay from "./LoadingOverlay";
 
 function UserPosts() {
     const { userId } = useParams();
-    const [todos, isFetching, err] = useData(`/users/${userId}/todos`, [], {});
+    const [todos, isFetching] = useData(`/users/${userId}/todos`, [], {});
 
     return (
         <Container>
