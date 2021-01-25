@@ -4,7 +4,7 @@ import { Card, Container, Grid, Header, Icon, Image, List } from "semantic-ui-re
 import useData from "../hooks/useData";
 import LoadingOverlay from "../components/LoadingOverlay";
 import Album from "./Album";
-import UserPosts from "../components/UserPosts"
+import Posts from "./Posts"
 import UserTodos from "../components/UserTodos"
 
 
@@ -65,7 +65,7 @@ function UserDetails() {
               <Album />
             </Route>
             <Route path={`${path}/posts`}>
-              <UserPosts userId={user.id} />
+              <Posts />
             </Route>
             <Route path={`${path}/todos`}>
               <UserTodos userId={user.id} />

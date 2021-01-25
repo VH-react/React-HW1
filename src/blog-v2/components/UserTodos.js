@@ -1,17 +1,29 @@
 import React from 'react'
+import { useParams, Redirect } from 'react-router-dom';
 import { Container, Item } from 'semantic-ui-react';
 import useData from '../hooks/useData';
 import LoadingOverlay from "./LoadingOverlay";
-import TodoItem from "./TodoItem"
 
-function UserPosts(props) {
-    const [todos, isFetching] = useData('/todos', []);
+function UserPosts() {
+    const { userId } = useParams();
+    const [todos, isFetching, err] = useData(`/users/${userId}/todos`, [], {});
 
     return (
         <Container>
+            <h2>User's TODO's</h2>
           <LoadingOverlay active={isFetching} />
             <Item.Group className='posts'>
-                {todos.map(todo => todo.userId === props.userId ? <TodoItem todo={todo} key={todo.id} id={todo.id}/> : null)}
+                { todos.map(todo =>
+                    <Item key={todo.id}>
+                        <Item.Content>
+                            <Item.Header>{todo.title}</Item.Header> 
+                            <Item.Extra>
+                                Completed: {todo.completed ? "YES" : "NO"}
+                            </Item.Extra>
+                        </Item.Content>
+                    </Item>
+                    )
+                }
             </Item.Group>
         </Container>
     )
