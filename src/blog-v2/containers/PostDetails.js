@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useParams, Redirect } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import Comments from '../components/Comments';
 import useData from '../hooks/useData';
@@ -8,9 +8,9 @@ import LoadingOverlay from "../components/LoadingOverlay";
 function PostDetails() {
     const { postId } = useParams();
     const [post, isLoading, err] = useData(`/posts/${postId}`, null, {});
-    
+
     if (err && err.status === 404) {
-        return <Redirect to={`/posts`}/>
+        window.history.back()
     }
     return (
         <Item>

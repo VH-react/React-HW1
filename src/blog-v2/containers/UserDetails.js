@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
+import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { Card, Container, Grid, Header, Icon, Image, List } from "semantic-ui-react";
 import useData from "../hooks/useData";
 import LoadingOverlay from "../components/LoadingOverlay";
@@ -16,7 +16,7 @@ function UserDetails() {
   const [albums] = useData(`/users/${userId}/albums`, []);
 
   if (err && err.status === 404) {
-    return <Redirect to={`/users`}/>
+    window.history.back()
   }
 
   return (
