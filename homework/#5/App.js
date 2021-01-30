@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
-import Shop from './shop/Shop'
+import BlogV2 from './blog-v2/Blog'
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Shop />
+        <BlogV2 />
       </div>
     );
   }
