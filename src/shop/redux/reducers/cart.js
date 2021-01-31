@@ -5,7 +5,7 @@ let initialState = [];
 try {
     initialState = JSON.parse(localStorage.getItem('products') || '[]')
 } catch (e) {
-    console.log('Local storage is empty')
+    console.log('Error')
 }
 
 export default function cartReducer (state = initialState, action) {
