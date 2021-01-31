@@ -24,7 +24,7 @@ export default function Routes() {
                 </Header>
                 <br/>
                 <Menu style={{width: "100%"}}>
-                <NavLink to='/' exact className='item' activeClassName='active-nav'>Home</NavLink>
+                    <NavLink to='/' exact className='item' activeClassName='active-nav'>Home</NavLink>
                     <NavLink to='/products' exact className='item' activeClassName='active-nav'>Products</NavLink>
                     <NavLink to='/cart' className='item' activeClassName='active-nav'>
                         Cart
