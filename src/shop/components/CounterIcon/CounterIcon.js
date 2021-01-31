@@ -1,9 +1,9 @@
 import React from 'react';
-import './CardIcon.css';
+import './CounterIcon.css';
 import { Icon } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
-function CartIcon() {
+function CounterIcon() {
     const cart = useSelector(state => state.cart);
     const quantity = cart.reduce((sum, product) => {
         return sum + (1 * product.quantity)
@@ -16,4 +16,4 @@ function CartIcon() {
     );
 }
 
-export default CartIcon;
+export default CounterIcon;

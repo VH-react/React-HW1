@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, Image } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/cart";
+import { addToCart } from "../../redux/actions/cart";
 
 
 function ProductItem({product}) {
@@ -15,11 +15,11 @@ function ProductItem({product}) {
                     Price: {product.price}$
                 </Card.Description>
             </Card.Content>
-            <Card.Content extra>
-                <div className='ui two buttons'>
-                <Button color='green' onClick={() => dispatch(addToCart(product.id))}>
-                    Buy
-                </Button>
+            <Card.Content textAlign="right" extra>
+                <div className='ui buttons'>
+                    <Button color='green' onClick={() => dispatch(addToCart(product.id))}>
+                        Buy
+                    </Button>
                 </div>
             </Card.Content>
         </Card>

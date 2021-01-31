@@ -2,7 +2,7 @@ import { Container, Header, Menu } from "semantic-ui-react";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import React, { useEffect } from "react";
 import AnimatedSwitchMain from "./AnimatedSwitch"
-import CartIcon from "./components/CartIcon";
+import CounterIcon from "./components/CounterIcon/CounterIcon";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "./redux/actions/products";
 
@@ -19,7 +19,7 @@ export default function Routes() {
                 </Header>
                 <Header floated='right'>
                     <NavLink to='/cart' style={{color: "black"}}>
-                        <CartIcon />
+                        <CounterIcon />
                     </NavLink>
                 </Header>
                 <br/>

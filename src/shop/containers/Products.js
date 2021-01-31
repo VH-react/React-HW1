@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { Container, Card } from "semantic-ui-react";
-import ProductItem from "../components/ProductItem";
+import ProductItem from "../components/Product/ProductItem";
 import LoadingOverlay from "../components/LoadingOverlay"
 
 function Products() {

@@ -1,4 +1,4 @@
-import { FETCH_PRODUCT_ERROR, FETCH_PRODUCT_LOADING, FETCH_PRODUCT_SUCCESS } from '../actions/products';
+import {CHECKOUT_REQUEST, CHECKOUT_SUCCESS, CHECKOUT_FAILURE} from "../actions/types"
 
 const initialState = {
     data: [],
@@ -6,21 +6,21 @@ const initialState = {
     error: null
 };
 
-export function productsReducer(state = initialState, action) {
+function productsReducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_PRODUCT_LOADING:
+        case CHECKOUT_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
-        case FETCH_PRODUCT_SUCCESS:
+        case CHECKOUT_SUCCESS:
             return {
                 ...state,
                 data: action.payload,
                 loading: false
             };
-        case FETCH_PRODUCT_ERROR:
+        case CHECKOUT_FAILURE:
             return {
                 ...state,
                 data: [],

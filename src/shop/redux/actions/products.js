@@ -1,20 +1,17 @@
 import apiClient from "../../../api-client"
-
-export const FETCH_PRODUCT_LOADING = 'FETCH_PRODUCT_LOADING';
-export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS';
-export const FETCH_PRODUCT_ERROR = 'FETCH_PRODUCT_ERROR';
+import {CHECKOUT_REQUEST, CHECKOUT_SUCCESS, CHECKOUT_FAILURE} from "./types"
 
 export const fetchProducts = () => async dispatch => {
-    dispatch({ type: FETCH_PRODUCT_LOADING });
+    dispatch({ type: CHECKOUT_REQUEST });
     try {
         const data = await apiClient.get('/products').then(response => response.data);
         dispatch({
-            type: FETCH_PRODUCT_SUCCESS,
+            type: CHECKOUT_SUCCESS,
             payload: data
         })
     } catch (err) {
         dispatch({
-            type: FETCH_PRODUCT_ERROR,
+            type: CHECKOUT_FAILURE,
             payload: err.message
         });
         throw err;

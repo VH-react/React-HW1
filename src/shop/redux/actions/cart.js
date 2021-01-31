@@ -1,12 +1,11 @@
-export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
-export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
+import { ADD_TO_CART, REMOVE_FROM_CART } from "./types"
 
 export const addToCart = id => ({
-    type: ADD_PRODUCT_TO_CART,
+    type: ADD_TO_CART,
     payload: id
 });
 
 export const removeFromCart = id => ({
-    type: REMOVE_PRODUCT_FROM_CART,
+    type: REMOVE_FROM_CART,
     payload: id
 });

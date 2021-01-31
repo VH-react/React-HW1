@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Label, List } from "semantic-ui-react";
 
-function CartTotal({ cartProducts }) {
+function TotalPrice({ cartProducts }) {
     const totalPrice = useMemo(() => {
         return cartProducts.reduce((sum, product) => {
             return sum + (product.price * product.quantity)
@@ -11,13 +11,10 @@ function CartTotal({ cartProducts }) {
     return (
         <List.Item className='cart-summary-row'>
             <List.Content floated='right'>
-                    <Label as='a' color='teal'>
-                        Total
-                    <Label.Detail>{totalPrice}$</Label.Detail>
-                </Label>
+                    Total - <Label color="green" tag>{totalPrice}$</Label>
             </List.Content>
         </List.Item>
     );
 }
 
-export default CartTotal;
+export default TotalPrice;
