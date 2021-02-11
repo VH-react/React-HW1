@@ -1,10 +1,10 @@
-const Router = require('express').Router;
-const db = require('./db/books');
-console.log(db)
+const { Router } = require('express');
+const fs = require('fs');
+const bookValidator = require('./middlewares/book-validator');
 
 const booksRouter = Router();
 
-let books = [];
+let books = JSON.parse(fs.readFileSync(`${__dirname}/db/books.json`));;
 
 booksRouter.get('/', (req, res) => {
     res.send(books);
@@ -17,35 +17,50 @@ booksRouter.post('/', (req, res) => {
         category: req.body.category,
         text: req.body.text
     };
-    newBook.id = Date.now();
     const isBookExists = books.some(book => book.title === newBook.title);
     if (isBookExists) {
         return res.status(400).send({ success: false, message: 'Book already in list!' })
     }
+    newBook.id = Date.now() + Math.random()*99;
     books.push(newBook);
-    res.send({ success: true })
+    fs.writeFileSync(`${__dirname}/db/books.json`, JSON.stringify(books));
+    res.status(201).send({ success: true });
 });
 
-booksRouter.put('/:id', (req, res) => {
+booksRouter.get('/:id', (req, res) => {
     const bookId = +req.params.id;
-    let count = 0;
+    const book = books.find(book => book.id === bookId);
+    if (!book) {
+      res.status(404).send({ error: 'Book not found!' });
+      return;
+    }
+    res.send(book);
+});
+
+booksRouter.put('/:id', bookValidator, (req, res) => {
+    const bookId = +req.params.id;
     const updatedArray = books.map(b => {
         if (b.id === bookId) {
-          count++;
           return Object.assign({}, b, req.body)
         }
         return b;
     });
     books = updatedArray.slice();
-    res.send(`Book ${bookId} updated`)
+    fs.writeFileSync(`${__dirname}/db/books.json`, JSON.stringify(books));
+    res.status(200).send(`Book ${bookId} updated`)
 });
 
 booksRouter.delete('/:id', (req, res) => {
-    const bookId = req.params.id;
-    const updatedArray = books.filter(b => b.id !== +bookId);
-    const deletedCount = books.length - updatedArray.length;
-    books = updatedArray.slice();
-    res.send({ deletedCount })
+    const bookId = +req.params.id;
+    const bookIndex = books.findIndex(b => b.id === bookId);
+    if (bookIndex === -1) {
+      return res.status(404).send({
+        error: 'Book not found'
+      })
+    }
+    books.splice(bookIndex, 1);
+    fs.writeFileSync(`${__dirname}/db/books.json`, JSON.stringify(books));
+    res.send(`Book ${bookId} has been deleted`);
 });
   
 module.exports = booksRouter;
