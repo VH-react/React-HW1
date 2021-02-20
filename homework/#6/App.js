@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
-import GithubGists from "./GithubGists/GithubGists";
+import Shop from './shop/Shop'
 
 
 class App extends Component {
-    render() {
-      return (
-        <GithubGists />
-      );
-    }
+  render() {
+    return (
+      <div>
+        <Shop />
+      </div>
+    );
+  }
 }
 
 export default App;
